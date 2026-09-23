@@ -16,8 +16,7 @@ class _OfflineDialogState extends State<OfflineDialog> {
   Future<void> retry() async {
     setState(() => checking = true);
     try {
-      final connected = await NetworkService.instance.refresh();
-      if (connected && mounted) Navigator.of(context).pop();
+      await NetworkService.instance.refresh();
     } finally {
       if (mounted) setState(() => checking = false);
     }
